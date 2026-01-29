@@ -18,7 +18,7 @@
 
 //   useEffect(() => {
 //     setTimeout(() => setIsLoading(false), 1000)
-    
+
 //     const savedTheme = localStorage.getItem('darkMode')
 //     if (savedTheme !== null) {
 //       setDarkMode(JSON.parse(savedTheme))
@@ -93,7 +93,7 @@
 //     <div className={`min-h-screen ${darkMode ? 'dark' : 'light'}`}>
 //       <CursorGlow />
 //       <FloatingDock darkMode={darkMode} setDarkMode={setDarkMode} />
-      
+
 //       <main className="lg:pl-24 min-h-screen">
 //         <RouterProvider router={router} />
 //       </main>
@@ -103,16 +103,12 @@
 
 // export default App
 
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import AppRouter from './components/AppRouter'
 import CursorGlow from './components/CursorGlow'
+// Remove this line: import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -140,17 +136,18 @@ function App() {
     return (
       <div className="fixed inset-0 bg-dark-900 flex items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0. }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
         >
-        Himesh Rajput
+          Himesh Rajput
         </motion.div>
       </div>
     )
   }
 
   return (
+    // Remove ErrorBoundary wrapper:
     <div className={`min-h-screen ${darkMode ? 'dark' : 'light'}`}>
       <CursorGlow />
       <AppRouter darkMode={darkMode} setDarkMode={setDarkMode} />

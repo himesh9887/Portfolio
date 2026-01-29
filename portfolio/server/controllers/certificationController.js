@@ -1,4 +1,4 @@
-const Certification = require("../models/Certification")
+const Certification = require("../models/CertificationModels")
 
 exports.getCertifications = async(req,res)=>{
  const data = await Certification.find()

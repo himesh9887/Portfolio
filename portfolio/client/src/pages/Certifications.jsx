@@ -154,9 +154,9 @@ function Certifications() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
-            { number: '6+', label: 'Certifications' },
-            { number: '50+', label: 'Projects Completed' },
-            { number: '5+', label: 'Years Experience' },
+            { number: '2+', label: 'Certifications' },
+            { number: '10+', label: 'Projects Completed' },
+            { number: '1+', label: 'Years Experience' },
             { number: '100%', label: 'Client Satisfaction' },
           ].map((stat, index) => (
             <div
