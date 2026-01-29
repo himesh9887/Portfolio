@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-900 text-slate-200 antialiased;
+  }
+
+  .light body {
+    @apply bg-light-50 text-slate-900;
+  }
+
+  /* Cursor Glow Effect */
+  .cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+  }
+
+  /* Floating Dock */
+  .dock {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(51, 65, 85, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .light .dock {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(203, 213, 225, 0.3);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/10;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold 
+           hover:shadow-lg hover:shadow-blue-500/25 hover:scale-105 transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-xl border border-slate-600 text-white font-semibold 
+           hover:bg-slate-800 hover:border-slate-500 transition-all duration-300;
+  }
+
+  .light .btn-outline {
+    @apply border-light-300 text-slate-700 hover:bg-light-200;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28 px-6 md:px-12 lg:px-16;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+/* Smooth scrolling on mobile */
+@media (max-width: 1024px) {
+  .dock {
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+  
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+}
