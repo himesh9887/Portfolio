@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ChevronRight, Download, Github, Linkedin, Twitter } from 'lucide-react'
-
+import profile from '../assets/profile.png' // Make sure to have a profile image in the specified path
 function Home() {
   const [text, setText] = useState('')
   const fullText = 'Full Stack Developer'
@@ -145,7 +145,7 @@ function Home() {
                 className="relative w-full h-full rounded-full overflow-hidden border-4 border-slate-800 shadow-2xl cursor-pointer group"
               >
                 <img
-                  src=""
+                  src={profile}
                   alt="Himesh Rajput"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
