@@ -103,12 +103,10 @@
 
 // export default App
 
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import AppRouter from './components/AppRouter'
 import CursorGlow from './components/CursorGlow'
-// Remove this line: import ErrorBoundary from "./components/ErrorBoundary";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -134,11 +132,11 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-dark-900 flex items-center justify-center">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0f172a]">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
+          initial={{ opacity: 0, scale: 0.88, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          className="rounded-full border border-white/10 bg-white/8 px-8 py-4 text-2xl font-bold text-white shadow-2xl shadow-cyan-500/20 backdrop-blur"
         >
           Himesh Rajput
         </motion.div>
@@ -147,8 +145,7 @@ function App() {
   }
 
   return (
-    // Remove ErrorBoundary wrapper:
-    <div className={`min-h-screen ${darkMode ? 'dark' : 'light'}`}>
+    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <CursorGlow />
       <AppRouter darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>

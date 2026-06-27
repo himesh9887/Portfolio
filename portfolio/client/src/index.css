@@ -3,48 +3,82 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
   }
   
   body {
-    @apply bg-dark-900 text-slate-200 antialiased;
+    @apply bg-[#070B17] text-slate-100 antialiased;
+    font-family: Inter, Sora, Poppins, system-ui, sans-serif;
   }
 
-  .light body {
-    @apply bg-light-50 text-slate-900;
+  .dark body {
+    @apply bg-[#0f172a] text-slate-100;
   }
 
-  /* Cursor Glow Effect */
   .cursor-glow {
     position: fixed;
     top: 0;
     left: 0;
-    width: 20px;
-    height: 20px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.16) 0%, rgba(99, 102, 241, 0.08) 35%, transparent 70%);
     pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-  }
-
-  /* Floating Dock */
-  .dock {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(51, 65, 85, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .light .dock {
-    background: rgba(248, 250, 252, 0.8);
-    border: 1px solid rgba(203, 213, 225, 0.3);
+    z-index: 90;
+    mix-blend-mode: screen;
+    transition: transform 0.08s ease;
   }
 }
 
 @layer components {
+  .section-wrap {
+    @apply px-4 py-20 sm:px-6 lg:px-8 lg:py-28;
+    scroll-margin-top: 96px;
+  }
+
+  .section-shell {
+    @apply px-4 py-24 sm:px-6 lg:px-8 lg:py-32;
+    scroll-margin-top: 108px;
+  }
+
+  .glass-panel {
+    @apply rounded-lg border border-slate-950/10 bg-white/70 shadow-[0_24px_80px_rgba(15,23,42,0.08)] backdrop-blur-2xl transition dark:border-white/10 dark:bg-white/[0.055] dark:shadow-[0_24px_90px_rgba(0,0,0,0.22)];
+  }
+
+  .premium-text {
+    @apply bg-gradient-to-r from-[#60A5FA] via-[#14B8A6] to-[#A78BFA] bg-clip-text text-transparent;
+  }
+
+  .premium-input {
+    @apply w-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--text)] outline-none transition placeholder:text-slate-500 focus:border-[#14B8A6]/60 focus:bg-[var(--surface-strong)] focus:ring-4 focus:ring-[#14B8A6]/10;
+  }
+
+  .form-field {
+    @apply rounded-lg border border-slate-950/10 bg-white/70 px-4 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/15 dark:border-white/10 dark:bg-white/5 dark:text-white;
+  }
+
+  .premium-grid {
+    background-image:
+      linear-gradient(var(--grid-line, rgba(255, 255, 255, 0.08)) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line, rgba(255, 255, 255, 0.08)) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(circle at 50% 20%, black, transparent 72%);
+  }
+
+  .premium-noise {
+    background-image: radial-gradient(rgba(255,255,255,.55) 0.6px, transparent 0.6px);
+    background-size: 4px 4px;
+  }
+
   .gradient-text {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500;
   }
@@ -81,15 +115,30 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
-/* Smooth scrolling on mobile */
 @media (max-width: 1024px) {
-  .dock {
-    max-width: 90vw;
-    margin: 0 auto;
-  }
-  
-  /* Prevent horizontal overflow */
   body {
     overflow-x: hidden;
+  }
+
+  .cursor-glow {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .premium-grid,
+  .premium-noise {
+    opacity: 0.035 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

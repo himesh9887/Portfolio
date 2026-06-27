@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Sora', 'Poppins', 'system-ui', 'sans-serif'],
       },
       colors: {
         dark: {
